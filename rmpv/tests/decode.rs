@@ -363,3 +363,13 @@ fn from_array_of_two_integers() {
     let vec = vec![Value::from(4), Value::from(42)];
     assert_eq!(Value::Array(vec), read_value(&mut &buf[..]).unwrap());
 }
+
+
+#[test]
+fn test_oom() {
+    let buf: &[u8] = &[
+        0xdb, 0xd5, 0xfb, 0xd5, 0xc3
+    ];
+
+    let x:Result<Value,Error> = read_value(&mut &buf[..]);
+}
